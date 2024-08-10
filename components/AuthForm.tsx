@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import Link from "next/link";
@@ -60,27 +62,29 @@ const AuthForm = ({ type }: { type: string }) => {
         dateOfBirth: data.dateOfBirth!,
         ssn: data.ssn!,
         email: data.email,
-        password: data.password
-      }
+        password: data.password,
+      };
 
-      if (type === 'sign-up') {
+      console.log("userdata::", userData);
+
+      if (type === "sign-up") {
         const newUser = await signUp(userData);
         setUser(newUser);
       }
 
-      if (type === 'sign-in') {
+      if (type === "sign-in") {
         const response = await signIn({
           email: data.email,
           password: data.password,
         });
-        if (response) router.push('/');
+        if (response) router.push("/");
       }
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <section className="auth-form">
